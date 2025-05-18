@@ -11,8 +11,11 @@ export const HeroPage = () => {
   if (!hero) {
     return <Navigate to="/marvel" />;
   }
+  let heroImageUrl = "";
 
-  const heroImageUrl = `/heroes/${hero.id}.jpg`;
+  process.env.NODE_ENV === "development"
+    ? (heroImageUrl = `/heroes/${hero.id}.jpg`)
+    : (heroImageUrl = `/heroes-react/heroes/${id}.jpg`);
 
   const onBack = () => {
     navigate(-1);
