@@ -8,13 +8,23 @@ export const HeroCard = ({
   first_appearance,
   characters,
 }) => {
-  const heroImageUrl = `./heroes/${id}.jpg`;
+  let heroImageUrl = "";
+
+  process.env.NODE_ENV === "development"
+    ? (heroImageUrl = `/heroes/${id}.jpg`)
+    : (heroImageUrl = `/heroes-react/heroes/${id}.jpg`);
+
   return (
     <div className="col">
       <div className="card">
         <div className="row no-gutters">
           <div className="col-4 ">
-            <img src={heroImageUrl} className="card-img  " alt={superhero} />
+            <img
+              /*  onError={rutaValida} */
+              src={heroImageUrl}
+              className="card-img"
+              alt={superhero}
+            />
           </div>
 
           <div className="col-8 animate__animated animate__backInLeft">
